@@ -35,3 +35,6 @@ nbbuild/
 dist/
 nbdist/
 .nb-gradle/
+
+# Other
+*-final.txt

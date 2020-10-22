@@ -32,7 +32,8 @@ public class ListaEncadeada {
         int count = 0;
         No temp = this.inicial;
         while (temp != null) {
-            if (temp.getElemento() == elemento) {
+            String el = temp.getElemento();
+            if (el.equals(elemento)) {
                 return count;
             }
 
@@ -73,9 +74,17 @@ public class ListaEncadeada {
         return count;
     } 
     
+    public boolean estaVazia() {
+        return this.inicial == null;
+    }    
+    
     public void adicionar(String elemento) {
         adicionar(new No(elemento));
     }
+    
+    public void adicionarPrimeiro(String elemento) {
+        adicionarPrimeiro(new No(elemento));        
+    }    
 
     public void adicionar(No no) {
         if (this.inicial == null) {
