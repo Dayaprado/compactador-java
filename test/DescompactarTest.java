@@ -24,7 +24,7 @@ public class DescompactarTest {
     }
     
     @Test
-    public void TodoCompactadorIniciaComUmaListaVazia() {
+    public void TodoDescompactadorIniciaComUmaListaVazia() {
         Descompactar descompactar = new Descompactar();
         ListaEncadeada lista = descompactar.getLista();
         
@@ -65,6 +65,15 @@ public class DescompactarTest {
         
         Assert.assertEquals("a", descompactar.getLista().getPrimeiro().getElemento());
         Assert.assertEquals(2, descompactar.getLista().tamanho());                    
+    }
+    
+    @Test
+    public void AListaNaoDeveRepetirPalavra() {
+        Descompactar descompactar = new Descompactar();
+        descompactar.descompactar("A A");
+        
+        Assert.assertEquals("A", descompactar.getLista().getPrimeiro().getElemento());
+        Assert.assertEquals(1, descompactar.getLista().tamanho());                    
     }
     
     @Test

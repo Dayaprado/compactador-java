@@ -19,18 +19,22 @@ import java.util.stream.Collectors;
  */
 public class Main {
     public static void main(String[] args) {
+        
+        // Ler os arquivos originais
         String original = "./src/arquivos/original.txt";
         String compactado = "./src/arquivos/compactado.txt";
         
         String textoOriginal = lerArquivo(original);
         String textoComprimido = lerArquivo(compactado);   
         
+        // Processar
         Compactar c = new Compactar();
         String resultadoCompactado = c.compactar(textoOriginal);
         
         Descompactar d = new Descompactar();
         String resultadoOriginal = d.descompactar(textoComprimido);        
         
+        // Escrever os arquivos com resultado da compressão/descompressão
         String novoOriginal = "./src/arquivos/original-final.txt";
         String novoCompactado = "./src/arquivos/compactado-final.txt";
         
@@ -58,8 +62,6 @@ public class Main {
     private static void escreverArquivo(String caminho, String arquivo) {
         try (PrintWriter pw = new PrintWriter(caminho)) {
                 pw.println(arquivo);
-        }catch(Exception e){
-        
-        }
+        }catch(Exception e){}
     }
 }

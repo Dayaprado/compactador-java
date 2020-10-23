@@ -33,6 +33,10 @@ public class Descompactar {
         return this.lista;
     }
 
+    /**
+     * Descompacta um arquivo todo, separando por linha
+     * @return string - texto com separação de quebra de linha (\n).
+     */
     public String descompactar(String texto) {
         String[] linhas = texto.split(BL);
 
@@ -43,6 +47,10 @@ public class Descompactar {
         return String.join(BL, linhas);
     }
 
+     /**
+     * Descompacta uma linha, substituindo índice pelo elemento na lista
+     * @return string - linha descompactada.
+     */
     private String descompactarLinha(String conteudo) {
 
         String[] palavras = quebrarString(conteudo);
@@ -50,6 +58,7 @@ public class Descompactar {
             String palavra = palavras[i];
             No no = buscarNoPalavra(palavra);
             if (no != null) {
+                // Substitui número pelo elemento da lista
                 palavras[i] = palavras[i].replace(palavra, no.getElemento());
                 this.adicionarPalavra(no.getElemento());
             } else {
@@ -57,11 +66,18 @@ public class Descompactar {
             }
         }
 
+        // Concatena o array de strings 
         String compactado = String.join(JN, palavras);
         return compactado;
     }
 
+    /**
+     * Busca o nó (elemento) da lista pelo conteúdo da mesma
+     * @return No - No encontrado.
+     * @return null - Caso no não seja encontrado.      
+     */
     private No buscarNoPalavra(String palavra) {
+        // Só executa se for um número
         if (palavra.matches(N)) {
             return this.lista.getNoPorIndice(Integer.parseInt(palavra) - 1);
         }
@@ -69,7 +85,12 @@ public class Descompactar {
         return null;
     }
 
+    /**
+     * Adiciona palavra na primeira posição da lista encadeada. 
+     * Caso a palavra exista, move a mesma para primeira posição
+     */
     private void adicionarPalavra(String palavra) {
+        // Só executa se for uma palavra
         if (palavra.matches(AN)) {
             int indice = this.lista.getIndicePorElemento(palavra);
             if (indice > -1) {
@@ -80,6 +101,10 @@ public class Descompactar {
         }
     }
 
+    /**
+     * Quebra uma string de acordo com o padrão do regex. 
+     * @return string[] - Retorna todas ocorrências do regex em um array de string 
+     */
     private String[] quebrarString(String conteudo) {
         ArrayList<String> resultado = new ArrayList<>();
 
